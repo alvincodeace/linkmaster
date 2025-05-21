@@ -1,0 +1,148 @@
+/* Cloaked Links Admin Styles */
+.linkmaster-cloaked-links {
+    margin: 20px 0;
+}
+
+.linkmaster-cloaked-links .tablenav {
+    margin: 8px 0;
+}
+
+.linkmaster-cloaked-links .column-status {
+    width: 90px;
+}
+
+.linkmaster-cloaked-links .column-clicks {
+    width: 100px;
+    text-align: center;
+}
+
+.linkmaster-cloaked-links .column-expiry {
+    width: 150px;
+}
+
+.linkmaster-cloaked-links .column-created {
+    width: 150px;
+}
+
+.linkmaster-cloaked-form {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.linkmaster-cloaked-form .form-table th {
+    width: 200px;
+}
+
+.linkmaster-cloaked-form input[type="text"],
+.linkmaster-cloaked-form input[type="url"],
+.linkmaster-cloaked-form input[type="password"],
+.linkmaster-cloaked-form textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+.linkmaster-cloaked-form textarea {
+    min-height: 100px;
+}
+
+.linkmaster-cloaked-form .description {
+    color: #666;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.linkmaster-cloaked-form .ip-restrictions {
+    margin-top: 10px;
+}
+
+.linkmaster-cloaked-form .ip-restrictions input {
+    width: calc(100% - 80px);
+    margin-right: 10px;
+}
+
+.linkmaster-cloaked-form .ip-restrictions button {
+    vertical-align: middle;
+}
+
+.linkmaster-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.linkmaster-status-active {
+    background: #e7f7ed;
+    color: #1a9c49;
+}
+
+.linkmaster-status-disabled {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.linkmaster-status-expired {
+    background: #fef7f1;
+    color: #d63638;
+}
+
+/* Click Stats */
+.linkmaster-click-stats {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.linkmaster-stat-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    flex: 1;
+    text-align: center;
+}
+
+.linkmaster-stat-box h3 {
+    margin: 0 0 10px 0;
+    color: #23282d;
+}
+
+.linkmaster-stat-box .stat-number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2271b1;
+}
+
+/* Settings Tab */
+.linkmaster-settings-form {
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.linkmaster-settings-form .form-table th {
+    width: 200px;
+}
+
+/* Tooltips */
+.linkmaster-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    color: #666;
+}
+
+.linkmaster-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 1000;
+}

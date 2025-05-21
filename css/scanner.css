@@ -1,0 +1,153 @@
+/* Scanner Settings */
+#linkmaster-scanner-settings .form-table {
+    margin-top: 1em;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+#linkmaster-scanner-settings .form-table th {
+    padding: 15px 10px;
+    width: 200px;
+}
+
+.margin-left {
+    margin-left: 10px !important;
+}
+
+#linkmaster-scanner-settings .form-table td {
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+
+#linkmaster-scanner-settings select,
+#linkmaster-scanner-settings input[type="time"] {
+    min-width: 150px;
+}
+
+.linkmaster-scanner-frequency {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.linkmaster-scanner-frequency .frequency-options,
+.linkmaster-scanner-frequency .time-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.linkmaster-scanner-frequency label {
+    margin: 0;
+    font-weight: 500;
+}
+
+.linkmaster-scanner-frequency select,
+.linkmaster-scanner-frequency input[type="time"] {
+    min-width: 100px;
+}
+
+.next-scan-info {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #f0f6fc;
+    border-left: 4px solid #2271b1;
+    color: #1d2327;
+    font-size: 13px;
+}
+
+#linkmaster-scanner-settings .regular-text {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Scanner Cards */
+.linkmaster-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.linkmaster-card .card-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.linkmaster-card .card-subtitle {
+    color: #646970;
+    margin-bottom: 15px;
+}
+
+/* Progress Bar */
+#scan-progress {
+    margin: 15px 0;
+}
+
+#scan-progress progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #f0f0f1;
+}
+
+#scan-progress progress::-webkit-progress-bar {
+    background-color: #f0f0f1;
+    border-radius: 3px;
+}
+
+#scan-progress progress::-webkit-progress-value {
+    background-color: #2271b1;
+    border-radius: 3px;
+}
+
+#scan-progress progress::-moz-progress-bar {
+    background-color: #2271b1;
+    border-radius: 3px;
+}
+
+/* Buttons */
+.linkmaster-button {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+    padding: 5px 15px;
+    height: auto;
+}
+
+.linkmaster-button:hover,
+.linkmaster-button:focus {
+    background: #135e96;
+    border-color: #135e96;
+    color: #fff;
+}
+
+.linkmaster-button:disabled {
+    background: #c3c4c7 !important;
+    border-color: #c3c4c7 !important;
+    color: #a7aaad !important;
+    cursor: not-allowed;
+}
+
+/* Notices */
+.notice {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.notice-success {
+    border-left-color: #00a32a;
+}
+
+.notice-error {
+    border-left-color: #d63638;
+}

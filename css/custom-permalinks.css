@@ -1,0 +1,207 @@
+.linkmaster-settings-form {
+    margin-bottom: 2em;
+    padding: 1em;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.linkmaster-settings-form h2 {
+    margin-top: 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #eee;
+}
+
+.wp-list-table .column-title {
+    width: 25%;
+}
+
+.wp-list-table .column-type {
+    width: 15%;
+}
+
+.wp-list-table .column-custom_permalink {
+    width: 35%;
+}
+
+.wp-list-table .column-date {
+    width: 15%;
+}
+
+.wp-list-table .column-actions {
+    width: 10%;
+}
+
+.wp-list-table code {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #f0f0f1;
+    padding: 3px 5px;
+}
+
+.wp-list-table .row-actions {
+    visibility: hidden;
+    padding: 2px 0 0;
+}
+
+.wp-list-table tr:hover .row-actions {
+    visibility: visible;
+}
+
+.wp-list-table .button-small {
+    margin-right: 5px;
+}
+
+.wp-list-table .button-small:last-child {
+    margin-right: 0;
+}
+
+.search-box {
+    margin: 1em 0;
+}
+
+.tablenav .actions {
+    padding: 2px 0;
+}
+
+.tablenav-pages {
+    float: right;
+    margin: 0 0 9px;
+}
+
+.tablenav-pages .pagination-links {
+    margin-left: 10px;
+}
+
+.tablenav-pages .page-numbers {
+    display: inline-block;
+    min-width: 28px;
+    min-height: 28px;
+    margin: 0 0 0 2px;
+    padding: 0 5px;
+    color: #646970;
+    background: #f0f0f1;
+    border: 1px solid #c3c4c7;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.tablenav-pages .page-numbers.current {
+    color: #000;
+    border-color: #646970;
+    background: #fff;
+    box-shadow: none;
+    cursor: default;
+}
+
+.tablenav-pages .page-numbers:hover {
+    color: #135e96;
+    border-color: #135e96;
+    background: #f0f0f1;
+}
+
+.tablenav-pages .page-numbers.dots {
+    background: none;
+    border: none;
+    cursor: default;
+}
+
+.tablenav-pages .displaying-num {
+    margin-right: 10px;
+    color: #646970;
+}
+
+.card {
+    max-width: 100%;
+}
+
+.card h3 {
+    margin: 1em 0;
+}
+
+.card ol {
+    margin: 1em 0 1em 2em;
+}
+
+.tablenav-filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    padding: 8px 0;
+}
+
+.tablenav-filters select {
+    min-width: 140px;
+    margin: 0;
+}
+
+.tablenav-filters input[type="search"] {
+    margin: 0;
+}
+
+.tablenav-filters .button {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+    .wp-list-table .column-custom_permalink,
+    .wp-list-table .column-type,
+    .wp-list-table .column-date {
+        display: none;
+    }
+    
+    .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.check-column) {
+        display: table-cell;
+    }
+    
+    .tablenav-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tablenav-filters select,
+    .tablenav-filters input[type="search"] {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .tablenav-pages {
+        float: none;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .tablenav-pages .pagination-links {
+        display: inline-block;
+        margin: 5px 0;
+    }
+    
+    .tablenav-pages .pagination-links .button {
+        margin: 0 2px;
+        padding: 0 8px;
+        line-height: 28px;
+        height: 30px;
+        min-width: 30px;
+        text-align: center;
+    }
+    
+    .tablenav-pages .pagination-links .button.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .tablenav-pages .paging-input {
+        margin: 0 5px;
+        vertical-align: middle;
+    }
+} 

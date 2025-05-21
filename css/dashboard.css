@@ -1,0 +1,675 @@
+/* LinkMaster Dashboard Styles */
+:root {
+  --primary-color: #2271b1;
+  --primary-hover: #135e96;
+  --success-color: #46b450;
+  --warning-color: #ffb900;
+  --danger-color: #dc3232;
+  --light-bg: #f0f6fc;
+  --card-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --text-main: #1d2327;
+  --text-secondary: #50575e;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+  --border-radius: 12px;
+}
+
+/* Main Dashboard Layout */
+.linkmaster-dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.linkmaster-dashboard h1 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.linkmaster-dashboard h1 {
+  display: flex;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  gap: 12px;
+  color: var(--text-main);
+  background: linear-gradient(90deg, #2271b1, #46b450);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linkmaster-dashboard h1 .dashicons {
+  font-size: 32px;
+  color: #2271b1;
+  background: linear-gradient(90deg, #2271b1, #46b450);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linkmaster-dashboard .linkmaster-version {
+  background: linear-gradient(90deg, #f0f6fc, #e0f4ff);
+  color: #2271b1;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-left: auto;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid Layout */
+.linkmaster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Card Styling */
+.linkmaster-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.linkmaster-card-header {
+  background: var(--light-bg);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkmaster-card-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkmaster-card-header h2 .dashicons {
+  color: var(--primary-color);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.linkmaster-card-content {
+  padding: 24px;
+}
+
+/* Health Score Section */
+.linkmaster-health-score-section {
+  margin-bottom: 28px;
+}
+
+.linkmaster-health-score-card {
+  width: 100%;
+}
+
+/* Score Overview */
+.linkmaster-score-overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.linkmaster-score-gauge {
+  flex: 0 0 auto;
+}
+
+.linkmaster-score-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  background: var(--card-bg);
+}
+
+.linkmaster-score-circle.excellent {
+  border-color: var(--success-color);
+}
+
+.linkmaster-score-circle.good {
+  border-color: var(--warning-color);
+}
+
+.linkmaster-score-circle.fair {
+  border-color: #ff9800;
+}
+
+.linkmaster-score-circle.poor {
+  border-color: var(--danger-color);
+}
+
+.linkmaster-score-value {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.linkmaster-score-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Score Status Colors */
+.linkmaster-score-circle.excellent {
+  background-color: rgba(70, 180, 80, 0.1);
+  border-color: var(--success-color);
+}
+
+.linkmaster-score-circle.excellent .linkmaster-score-value {
+  color: var(--success-color);
+}
+
+.linkmaster-score-circle.excellent::before {
+  border-color: rgba(70, 180, 80, 0.3);
+  opacity: 0.3;
+}
+
+.linkmaster-score-circle.good {
+  background-color: rgba(255, 185, 0, 0.1);
+  border-color: var(--warning-color);
+}
+
+.linkmaster-score-circle.good .linkmaster-score-value {
+  color: var(--warning-color);
+}
+
+.linkmaster-score-circle.good::before {
+  border-color: rgba(255, 185, 0, 0.3);
+  opacity: 0.3;
+}
+
+.linkmaster-score-circle.fair {
+  background-color: rgba(255, 185, 0, 0.15);
+  border-color: #ff9800;
+}
+
+.linkmaster-score-circle.fair .linkmaster-score-value {
+  color: #ff9800;
+}
+
+.linkmaster-score-circle.fair::before {
+  border-color: rgba(255, 185, 0, 0.3);
+  opacity: 0.3;
+}
+
+.linkmaster-score-circle.poor {
+  background-color: rgba(220, 50, 50, 0.1);
+  border-color: var(--danger-color);
+}
+
+.linkmaster-score-circle.poor .linkmaster-score-value {
+  color: var(--danger-color);
+}
+
+.linkmaster-score-circle.poor::before {
+  border-color: rgba(220, 50, 50, 0.3);
+  opacity: 0.3;
+}
+
+/* Stats Cards */
+.linkmaster-score-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  flex: 1;
+}
+
+/* Health score stat items with status colors - only color the numbers */
+.linkmaster-stat-item .healthy-links {
+  color: var(--success-color);
+}
+
+.linkmaster-stat-item .broken-links {
+  color: var(--danger-color);
+}
+
+.linkmaster-stat-item .redirected-links {
+  color: var(--warning-color);
+}
+
+.linkmaster-stat-item .total-links {
+  color: var(--primary-color);
+}
+
+/* Stat items styling - with uniform borders */
+.linkmaster-stat-item {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.linkmaster-stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.linkmaster-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.linkmaster-stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Breakdown Bar */
+.linkmaster-score-breakdown {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.linkmaster-breakdown-bar {
+  height: 24px;
+  background: #f0f0f1;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.linkmaster-bar-segment {
+  height: 100%;
+  transition: width 0.8s ease-in-out;
+}
+
+.linkmaster-bar-segment.healthy {
+  background-color: var(--success-color);
+}
+
+.linkmaster-bar-segment.broken {
+  background-color: var(--danger-color);
+}
+
+.linkmaster-breakdown-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.linkmaster-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+}
+
+.linkmaster-legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.linkmaster-legend-color.healthy {
+  background-color: var(--success-color);
+}
+
+.linkmaster-legend-color.broken {
+  background-color: var(--danger-color);
+}
+
+.linkmaster-legend-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.linkmaster-legend-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Top Issues */
+.linkmaster-top-issues {
+  margin-top: 24px;
+}
+
+.linkmaster-top-issues h3 {
+  font-size: 16px;
+  margin: 0 0 16px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkmaster-top-issues h3 .dashicons {
+  color: var(--danger-color);
+  font-size: 18px;
+}
+
+.linkmaster-issues-intro {
+  margin-bottom: 15px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.linkmaster-issues-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.linkmaster-issues-list li {
+  padding: 16px;
+  background: rgba(220, 50, 50, 0.05);
+  margin-bottom: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.linkmaster-issues-action {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.linkmaster-issues-action .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 15px;
+  border-radius: 6px;
+}
+
+.linkmaster-issues-list .issue-url {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--danger-color);
+  word-break: break-all;
+}
+
+.linkmaster-issues-list .issue-source {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* Quick Actions */
+.linkmaster-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linkmaster-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.linkmaster-action-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.linkmaster-action-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.linkmaster-action-item .dashicons {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+  margin-right: 12px;
+}
+
+.linkmaster-action-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkmaster-action-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.linkmaster-action-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.linkmaster-actions .button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  height: auto;
+  font-size: 14px;
+  border-radius: 6px;
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+}
+
+.linkmaster-actions .button-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.linkmaster-actions .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Features */
+.linkmaster-features {
+  display: grid;
+  gap: 20px;
+}
+
+.linkmaster-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.linkmaster-feature .dashicons {
+  color: var(--primary-color);
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.linkmaster-feature h3 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.linkmaster-feature p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Help & Support */
+.linkmaster-help {
+  padding: 0;
+}
+
+.linkmaster-help p {
+  margin: 0 0 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.linkmaster-help ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkmaster-help li {
+  margin-bottom: 12px;
+}
+
+.linkmaster-help li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+.linkmaster-help .dashicons {
+  color: var(--primary-color);
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Loading Indicator */
+.linkmaster-score-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.linkmaster-score-loading .spinner {
+  float: none;
+  margin: 0 0 16px;
+}
+
+.linkmaster-score-loading p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1200px) {
+  .linkmaster-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 782px) {
+  .linkmaster-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .linkmaster-score-overview {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .linkmaster-score-gauge {
+    margin-bottom: 24px;
+  }
+  
+  .linkmaster-score-stats {
+    width: 100%;
+  }
+  
+  .linkmaster-breakdown-legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .linkmaster-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .linkmaster-action-item {
+    padding: 12px;
+  }
+  
+  .linkmaster-issues-list {
+    max-height: 250px;
+  }
+  
+  .linkmaster-issues-action {
+    margin-top: 15px;
+  }
+  
+  .linkmaster-top-issues h3 {
+    font-size: 15px;
+  }
+  
+  .linkmaster-issues-intro {
+    font-size: 13px;
+  }
+}

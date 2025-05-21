@@ -1,0 +1,279 @@
+/* Main Layout */
+.linkmaster-wrap {
+    margin: 20px 0;
+}
+
+.linkmaster-form-container {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.linkmaster-form-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.linkmaster-form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.linkmaster-form-section h2 {
+    font-size: 1.3em;
+    margin: 0 0 15px;
+    padding: 0;
+}
+
+/* Field Groups */
+.linkmaster-field-group {
+    margin-bottom: 20px;
+}
+
+.linkmaster-field-group:last-child {
+    margin-bottom: 0;
+}
+
+.linkmaster-field-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.linkmaster-field-group input[type="text"],
+.linkmaster-field-group input[type="url"],
+.linkmaster-field-group input[type="number"] {
+    width: 100%;
+    max-width: 500px;
+}
+
+.linkmaster-field-group .description {
+    color: #666;
+    font-style: italic;
+    margin: 5px 0 0;
+}
+
+/* Checkbox Groups */
+.linkmaster-checkbox-group label {
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.linkmaster-checkbox-group .description {
+    margin-left: 24px;
+    margin-top: 0;
+}
+
+.linkmaster-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Form Actions */
+.linkmaster-form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.linkmaster-form-actions .button {
+    margin-right: 10px;
+}
+
+/* Tools Section */
+.linkmaster-tools-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin: 20px 0;
+    padding: 15px;
+}
+
+.linkmaster-import-export {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.linkmaster-import-export h2 {
+    margin: 0;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.linkmaster-tool-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.linkmaster-import {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* File Input Styling */
+.linkmaster-file-input {
+    position: relative;
+    display: inline-block;
+}
+
+.linkmaster-file-input input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.linkmaster-file-input label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* Table Styling */
+.linkmaster-table-container {
+    margin-top: 20px;
+}
+
+.column-keyword {
+    width: 20%;
+}
+
+.column-target {
+    width: 30%;
+}
+
+.column-priority {
+    width: 10%;
+    text-align: center;
+}
+
+.column-limit {
+    width: 10%;
+    text-align: center;
+}
+
+.column-usage {
+    width: 120px;
+}
+
+.column-actions {
+    width: 140px;
+    text-align: right;
+}
+
+.column-target a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.column-target .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.linkmaster-action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+.linkmaster-action-buttons .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.linkmaster-action-buttons .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.linkmaster-no-items {
+    text-align: center;
+    padding: 20px !important;
+    color: #666;
+}
+
+.linkmaster-no-items .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Button Icons */
+.button .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+/* Row Actions */
+.row-actions {
+    padding: 2px 0 0;
+    visibility: hidden;
+}
+
+tr:hover .row-actions {
+    visibility: visible;
+}
+
+.row-actions .view a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.row-actions .view a:hover {
+    color: #00a0d2;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 782px) {
+    .linkmaster-import-export {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .linkmaster-tool-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .linkmaster-import {
+        width: 100%;
+    }
+    
+    .linkmaster-file-input {
+        flex-grow: 1;
+    }
+    
+    .linkmaster-file-input label {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .column-actions {
+        text-align: left;
+    }
+    
+    .linkmaster-action-buttons {
+        justify-content: flex-start;
+    }
+}

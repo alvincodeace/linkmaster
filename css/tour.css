@@ -1,0 +1,132 @@
+/**
+ * LinkMaster Tour Styles
+ */
+
+/* Tour overlay */
+.linkmaster-tour-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999998;
+}
+
+/* Welcome modal */
+.linkmaster-tour-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 999999;
+    width: 500px;
+    max-width: 90%;
+}
+
+.linkmaster-tour-modal-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.linkmaster-tour-modal h2 {
+    margin-top: 0;
+    color: #23282d;
+    font-size: 24px;
+}
+
+.linkmaster-tour-modal p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.linkmaster-tour-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Custom styling for IntroJS elements */
+.linkmaster-tour-tooltip {
+    max-width: 350px;
+    min-width: 250px;
+}
+
+.linkmaster-tour-tooltip .introjs-tooltip-title {
+    color: #23282d;
+    font-weight: 600;
+}
+
+.introjs-helperLayer {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #0073aa;
+}
+
+.linkmaster-tour-highlight {
+    z-index: 999997 !important;
+}
+
+/* Button styling */
+.introjs-button {
+    text-shadow: none;
+    background-image: none;
+    background-color: #f1f1f1;
+    color: #0073aa;
+    border: 1px solid #0073aa;
+    border-radius: 3px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+.introjs-button:hover,
+.introjs-button:focus {
+    background-color: #f8f8f8;
+    color: #00a0d2;
+    border-color: #00a0d2;
+    box-shadow: 0 0 0 1px #00a0d2;
+}
+
+.introjs-button.introjs-nextbutton {
+    background-color: #0073aa;
+    color: white;
+}
+
+.introjs-button.introjs-nextbutton:hover,
+.introjs-button.introjs-nextbutton:focus {
+    background-color: #00a0d2;
+    color: white;
+}
+
+.introjs-button.introjs-skipbutton {
+    color: #666;
+    border-color: #ccc;
+}
+
+/* Progress bar */
+.introjs-progressbar {
+    background-color: #0073aa;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    .linkmaster-tour-tooltip {
+        max-width: 90%;
+        min-width: 200px;
+    }
+    
+    .linkmaster-tour-modal {
+        width: 90%;
+    }
+    
+    .linkmaster-tour-modal-buttons {
+        flex-direction: column;
+    }
+    
+    .linkmaster-tour-modal-buttons button {
+        margin-bottom: 10px;
+    }
+}

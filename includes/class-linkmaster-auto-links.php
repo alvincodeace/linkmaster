@@ -96,109 +96,140 @@ class LinkMaster_Auto_Links {
 
         global $wpdb, $post;
         
-        // Get all auto-link rules ordered by priority (DESC) and keyword length (DESC)
-        $rules = $wpdb->get_results(
-            "SELECT * FROM {$this->table_name} 
-            ORDER BY priority DESC, LENGTH(keyword) DESC"
-        );
+        // Get current post info for filtering
+        $current_post_type = get_post_type();
+        $current_post_id = get_the_ID();
+        
+        // Get filtered rules based on current post
+        $rules = $this->get_active_rules($current_post_type, $current_post_id);
         
         if (empty($rules)) {
             return $content;
         }
         
-        // Use DOMDocument for reliable HTML parsing
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        libxml_clear_errors();
+        // Sort rules by priority (DESC) first, then by keyword length (DESC)
+        usort($rules, function($a, $b) {
+            if ($a->priority == $b->priority) {
+                return strlen($b->keyword) - strlen($a->keyword);
+            }
+            return $b->priority - $a->priority;
+        });
         
-        $xpath = new DOMXPath($dom);
-        
-        // Only process text within paragraphs and lists
-        $textNodes = $xpath->query('//p//text() | //li//text()');
+        // Track replacements to avoid conflicts
+        $processed_positions = array();
         
         foreach ($rules as $rule) {
-            $count = 0;
-            foreach ($textNodes as $node) {
-                if ($count >= $rule->link_limit) {
-                    break;
-                }
+            $replacement_count = 0;
+            
+            // Create pattern for keyword matching
+            $pattern = $rule->case_sensitive ? 
+                '/\b(' . preg_quote($rule->keyword, '/') . ')\b/' :
+                '/\b(' . preg_quote($rule->keyword, '/') . ')\b/i';
+            
+            // Find all matches with positions
+            if (preg_match_all($pattern, $content, $matches, PREG_OFFSET_CAPTURE)) {
+                // Process matches in reverse order to maintain positions
+                $matches_with_positions = array_reverse($matches[0]);
                 
-                // Skip if node is already part of a link
-                if ($this->is_node_in_link($node)) {
-                    continue;
-                }
-                
-                $text = $node->nodeValue;
-                $pattern = $rule->case_sensitive ? 
-                    '/\b(' . preg_quote($rule->keyword, '/') . ')\b/' :
-                    '/\b(' . preg_quote($rule->keyword, '/') . ')\b/i';
-                
-                if (preg_match($pattern, $text)) {
-                    $count++;
-                    $this->replace_text_with_link($node, $rule);
+                foreach ($matches_with_positions as $match) {
+                    if ($replacement_count >= $rule->link_limit) {
+                        break;
+                    }
+                    
+                    $match_text = $match[0];
+                    $match_position = $match[1];
+                    $match_end = $match_position + strlen($match_text);
+                    
+                    // Check if this position conflicts with previous replacements
+                    $conflict = false;
+                    foreach ($processed_positions as $pos) {
+                        if (($match_position >= $pos['start'] && $match_position < $pos['end']) ||
+                            ($match_end > $pos['start'] && $match_end <= $pos['end']) ||
+                            ($match_position <= $pos['start'] && $match_end >= $pos['end'])) {
+                            $conflict = true;
+                            break;
+                        }
+                    }
+                    
+                    if ($conflict) {
+                        continue;
+                    }
+                    
+                    // Check if we're inside an existing link or other HTML tag
+                    if ($this->is_inside_link($content, $match_position)) {
+                        continue;
+                    }
+                    
+                    // Create the link
+                    $link_attributes = array();
+                    $link_attributes[] = 'href="' . esc_url($rule->target_url) . '"';
+                    
+                    if ($rule->nofollow) {
+                        $rel_parts = array('nofollow');
+                    } else {
+                        $rel_parts = array();
+                    }
+                    
+                    if ($rule->new_tab) {
+                        $link_attributes[] = 'target="_blank"';
+                        $rel_parts[] = 'noopener';
+                        $rel_parts[] = 'noreferrer';
+                    }
+                    
+                    if (!empty($rel_parts)) {
+                        $link_attributes[] = 'rel="' . implode(' ', $rel_parts) . '"';
+                    }
+                    
+                    $link_html = '<a ' . implode(' ', $link_attributes) . '>' . $match_text . '</a>';
+                    
+                    // Replace the text with the link
+                    $content = substr_replace($content, $link_html, $match_position, strlen($match_text));
+                    
+                    // Track this replacement
+                    $processed_positions[] = array(
+                        'start' => $match_position,
+                        'end' => $match_position + strlen($link_html)
+                    );
+                    
+                    $replacement_count++;
                 }
             }
         }
         
-        $content = $dom->saveHTML();
         return $content;
     }
     
-    private function is_node_in_link(DOMNode $node) {
-        while ($node) {
-            if ($node->nodeName === 'a') {
-                return true;
-            }
-            $node = $node->parentNode;
+    /**
+     * Check if a position in content is inside an existing link or HTML tag
+     */
+    private function is_inside_link($content, $position) {
+        // Get content before position
+        $before = substr($content, 0, $position);
+        
+        // Check for unclosed <a> tags
+        $open_tags = preg_match_all('/<a\b[^>]*>/i', $before);
+        $close_tags = preg_match_all('/<\/a>/i', $before);
+        
+        if ($open_tags > $close_tags) {
+            return true;
         }
+        
+        // Check if inside any HTML tag
+        $last_open = strrpos($before, '<');
+        $last_close = strrpos($before, '>');
+        
+        if ($last_open !== false && ($last_close === false || $last_open > $last_close)) {
+            return true;
+        }
+        
         return false;
-    }
-    
-    private function replace_text_with_link(DOMText $node, $rule) {
-        $text = $node->nodeValue;
-        $pattern = $rule->case_sensitive ? 
-            '/\b(' . preg_quote($rule->keyword, '/') . ')\b/' :
-            '/\b(' . preg_quote($rule->keyword, '/') . ')\b/i';
-        
-        $link = $node->ownerDocument->createElement('a');
-        $link->setAttribute('href', esc_url($rule->target_url));
-        if ($rule->nofollow) {
-            $link->setAttribute('rel', 'nofollow');
-        }
-        if ($rule->new_tab) {
-            $link->setAttribute('target', '_blank');
-            $link->setAttribute('rel', ($rule->nofollow ? 'nofollow ' : '') . 'noopener noreferrer');
-        }
-        
-        $parts = preg_split($pattern, $text, 2, PREG_SPLIT_DELIM_CAPTURE);
-        
-        if (count($parts) === 3) {
-            if ($parts[0]) {
-                $node->parentNode->insertBefore(
-                    $node->ownerDocument->createTextNode($parts[0]),
-                    $node
-                );
-            }
-            
-            $link->appendChild($node->ownerDocument->createTextNode($parts[1]));
-            $node->parentNode->insertBefore($link, $node);
-            
-            if ($parts[2]) {
-                $node->parentNode->insertBefore(
-                    $node->ownerDocument->createTextNode($parts[2]),
-                    $node
-                );
-            }
-            
-            $node->parentNode->removeChild($node);
-        }
     }
     
     public function get_active_rules($post_type = null, $post_id = null) {
         global $wpdb;
         
-        $rules = $wpdb->get_results("SELECT * FROM {$this->table_name} ORDER BY LENGTH(keyword) DESC");
+        // Get all rules without ordering here - we'll sort in process_content
+        $rules = $wpdb->get_results("SELECT * FROM {$this->table_name}");
         
         if (empty($rules)) {
             return array();
@@ -207,13 +238,13 @@ class LinkMaster_Auto_Links {
         return array_filter($rules, function($rule) use ($post_type, $post_id) {
             // Check post type
             $allowed_types = maybe_unserialize($rule->post_types);
-            if (!empty($allowed_types) && !in_array($post_type, $allowed_types)) {
+            if (!empty($allowed_types) && is_array($allowed_types) && !in_array($post_type, $allowed_types)) {
                 return false;
             }
             
             // Check excluded posts
             $excluded = maybe_unserialize($rule->excluded_posts);
-            if (!empty($excluded) && in_array($post_id, $excluded)) {
+            if (!empty($excluded) && is_array($excluded) && in_array($post_id, $excluded)) {
                 return false;
             }
             
